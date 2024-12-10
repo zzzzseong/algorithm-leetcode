@@ -1,22 +1,20 @@
-import java.util.*;
-
 class Solution {
     public int majorityElement(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
 
-        for(int num : nums) {
-            map.put(num, map.getOrDefault(num, 0)+1);
-        }
+        //majority는 2/n개 이상 존재함.
+        
+        int count = 0, majority = nums[0];
+        for(int i=0; i<nums.length; i++) {
+            if(nums[i] == majority) count++;
+            else count--;
 
-        int maxKey = 0, max = 0;
-        for(int key : map.keySet()) {
-            int num = map.get(key);
-            if(num > max) {
-                max = num;
-                maxKey = key;
+            if(count == -1) {
+                majority = nums[i];
+                count = 1;
             }
         }
         
-        return maxKey;
+        
+        return majority;
     }
 }

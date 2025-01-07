@@ -4,12 +4,10 @@ class Solution {
         k %= len;
 
         /* rotate right */
-        int left = 0, mid = k-1, right = len-1;
+        rotate(nums, 0, k-1, len-1);
 
         /* rotate left */
-        // int left = 0, mid = len-k-1, right = len-1;
-
-        rotate(nums, left, mid, right);
+        // rotate(nums, 0, len-k-1, len-1);
     }
 
     public void rotate(int[] nums, int left, int mid, int right) {

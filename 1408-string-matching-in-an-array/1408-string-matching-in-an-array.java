@@ -3,18 +3,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class Solution {
-    public List<String> stringMatching(String[] words) {
-        Arrays.sort(words, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.length()-o2.length();
-            }
-        });
-        
+    public List<String> stringMatching(String[] words) {        
+        int n = words.length;
         List<String> answer = new ArrayList<>();
-        for(int i=0; i<words.length; i++) {
-            for(int j=i+1; j<words.length; j++) {
-                if(words[j].indexOf(words[i]) != -1) {
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<n; j++) {
+                if(i!=j && words[j].indexOf(words[i]) != -1) {
                     answer.add(words[i]);
                     break;
                 }

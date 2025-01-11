@@ -8,7 +8,7 @@ class Solution {
         if(n == k) return true;
 
         int[] alphabets = new int[26];
-        for(int i=0; i<n; i++) alphabets[s.charAt(i)-'a']++;
+        for(char c : s.toCharArray()) alphabets[c-'a']++;
 
         for(int i=0; i<26; i++) if(alphabets[i]%2 != 0) k--;
 

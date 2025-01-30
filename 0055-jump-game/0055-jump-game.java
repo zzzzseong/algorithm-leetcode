@@ -7,6 +7,6 @@ class Solution {
             if(nums[i] >= ++dist) dist = 0;
         }
 
-        return dist == 0 ? true : false;
+        return dist == 0;
     }
 }

@@ -1,6 +1,7 @@
 class Solution {
     public void moveZeroes(int[] nums) {
         int n = nums.length;
+        if(n == 1) return;
 
         for(int left=0, right=0; left<n; left++) {
             while(right < n && nums[right] == 0) right++;

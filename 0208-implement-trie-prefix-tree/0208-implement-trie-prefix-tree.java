@@ -1,32 +1,35 @@
 class Trie {
 
-    private List<String> words = new ArrayList<>();
+    private Trie[] children = new Trie[26];
+    private boolean endOfWord = false;
 
     public Trie() {}
     
     public void insert(String word) {
-        words.add(word);
+        Trie currentTrie = this;
+        for(char c : word.toCharArray()) {
+            if(Objects.isNull(currentTrie.children[c-'a'])) currentTrie.children[c-'a'] = new Trie();
+            currentTrie = currentTrie.children[c-'a'];
+        }
+        currentTrie.endOfWord = true;
     }
     
     public boolean search(String word) {
-        for(String storedWord : words) {
-            if(Objects.equals(storedWord, word)) return true;
+        Trie currentTrie = this;
+        for(char c : word.toCharArray()) {
+            if(Objects.isNull(currentTrie.children[c-'a'])) return false;
+            currentTrie = currentTrie.children[c-'a'];
         }
-        return false;
+        if(!currentTrie.endOfWord) return false;
+        return true;
     }
     
     public boolean startsWith(String prefix) {
-        for(String storedWord : words) {
-            if(storedWord.startsWith(prefix)) return true;
+        Trie currentTrie = this;
+        for(char c : prefix.toCharArray()) {
+            if(Objects.isNull(currentTrie.children[c-'a'])) return false;
+            currentTrie = currentTrie.children[c-'a'];
         }
-        return false;
+        return true;
     }
 }
-
-/**
- * Your Trie object will be instantiated and called as such:
- * Trie obj = new Trie();
- * obj.insert(word);
- * boolean param_2 = obj.search(word);
- * boolean param_3 = obj.startsWith(prefix);
- */

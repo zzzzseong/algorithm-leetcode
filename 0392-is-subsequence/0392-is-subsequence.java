@@ -6,11 +6,13 @@ class Solution {
         if(sLen > tLen) return false;
 
         int sIdx = 0;
-        for(int i=0; i<tLen; i++) {
-            if(t.charAt(i) == s.charAt(sIdx)) {
-                if(++sIdx == sLen) break;
-            }
+        int tIdx = 0;
+        while(sIdx < sLen) {
+            int findIdx = t.indexOf(s.charAt(sIdx++), tIdx);
+            if(findIdx == -1) return false;
+            else tIdx = findIdx+1;
         }
-        return sIdx == sLen ? true : false;
+
+        return true;
     }
 }

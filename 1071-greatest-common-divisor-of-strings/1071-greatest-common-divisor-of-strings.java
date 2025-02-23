@@ -1,18 +1,18 @@
 class Solution {
     public String gcdOfStrings(String str1, String str2) {
+        if(!(str1+str2).equals(str2+str1)) return "";
+
         int gcd = this.gcd(str1.length(), str2.length());
 
-        String gcdStr = str1.substring(0, gcd);
-
-        if("".equals(str1.replace(gcdStr, "")) && "".equals(str2.replace(gcdStr, ""))) return gcdStr;
-
-        return "";
+        return str1.substring(0, gcd);
     }
 
     private int gcd(int a, int b) {
-        for(int i=Math.min(a, b); i>=2; i--) {
-            if(a%i == 0 && b%i ==0) return i;
+        while(b != 0) {
+            int temp = a%b;
+            a = b;
+            b = temp;
         }
-        return 1;
+        return a;
     }
 }
